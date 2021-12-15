@@ -23,6 +23,7 @@
 #endif
 #define SERVER_PORT 5060  //The port that the server listens
 #define SIZE 65536
+#define BUFFER_SIZE 65536
 static time_t total_time = 0;
 static double ave_time = 0;
 static int count = 0;
@@ -71,7 +72,7 @@ int main()
 
     struct sockaddr_in clientAddress;  //
     socklen_t clientAddressLen = sizeof(clientAddress);
-    char bufcc[256];
+    char bufcc[BUFFER_SIZE];
 	socklen_t len = sizeof(bufcc);
 	if (getsockopt(listeningSocket, IPPROTO_TCP, TCP_CONGESTION, bufcc, &len) != 0) 
 	{ 

@@ -116,7 +116,7 @@ for(int i=0;i<5;i++)
 		    printf("inet_pton() failed");
 		    return -1;
 	    }
-        char buf[256];
+        char buf[BUFFER_SIZE];
         socklen_t len;
         sock = socket(AF_INET, SOCK_STREAM, 0);
  	    if (sock == -1) {
