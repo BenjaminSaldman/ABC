@@ -26,16 +26,17 @@
 #endif
 
 #define SERVER_PORT 5060
-#define SERVER_IP_ADDRESS "172.17.17.23"
+#define SERVER_IP_ADDRESS "10.0.2.15"
 #define BUFFER_SIZE 65536
 int main()
 {
+    char buff[BUFFER_SIZE]={0};
 
 for(int i=0;i<5;i++)
 {
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     struct sockaddr_in serverAddress;
-    char readed[BUFFER_SIZE]={0};
+    //char buff[BUFFER_SIZE]={0};
     if(sock == -1)
     {
         printf("Could not create socket : %d",errno);
@@ -71,9 +72,9 @@ for(int i=0;i<5;i++)
     int bytesSent = 0;
     int bytes_sent = 0;
     int numOfSeg = 0;
-    while(len=fread(read,1,sizeof(read),fp)>0)
+    while(len=fread(buff,1,sizeof(buff),fp)>0)
     {
-        bytesSent=send(sock,read,len,0);
+        bytesSent=send(sock,buff,len,0);
         if (-1 == bytesSent)
         {
             printf("send() failed with error code : %d" ,errno);
@@ -156,9 +157,9 @@ for(int i=0;i<5;i++)
         int bytesSent = 0;
         int bytes_sent = 0;
         int numOfSeg = 0;
-        while(length=fread(read,1,sizeof(read),fp)>0)
+        while(length=fread(buff,1,sizeof(buff),fp)>0)
         {
-            bytesSent=send(sock,read,length,0);
+            bytesSent=send(sock,buff,length,0);
             if (-1 == bytesSent)
             {
                 printf("send() failed with error code : %d" ,errno);
